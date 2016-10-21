@@ -17,6 +17,8 @@ namespace MyShop
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            //config.MessageHandlers.Add(new HomeCinemaAuthHandler());
+            // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
@@ -27,12 +29,12 @@ namespace MyShop
             //I chaned the routeTemplate so that methods/services would be identified by their action, and not by their parameters.
             //I was getting conflicts if I had more than one GET services, that had identical parameter options, but totally different return data.
             //Adding the action to the routeTemplte correct this issue.
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{action}/{id}", //routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
-            ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{action}/{id}", //routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
+            ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Product>("Products");
             builder.EntitySet<Category>("Categories");
             builder.EntitySet<Comment>("Comments");
@@ -42,6 +44,7 @@ namespace MyShop
             builder.EntitySet<ShoppingCart>("ShoppingCarts");
             builder.EntitySet<Value>("SpecificationValues");
             config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
+
         }
     }
 }

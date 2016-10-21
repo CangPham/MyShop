@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class OrderDetailConfig : EntityTypeConfiguration<OrderDetail>
+    public class OrderDetailConfig : EntityBaseConfiguration<OrderDetail>
     {
         public OrderDetailConfig()
         {

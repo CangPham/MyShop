@@ -91,6 +91,7 @@
     <Compile Include="Configuraion\CategoryConfig.cs" />
     <Compile Include="Configuraion\CommentConfig.cs" />
     <Compile Include="Configuraion\ContactConfig.cs" />
+    <Compile Include="Configuraion\EntityBaseConfiguration.cs" />
     <Compile Include="Configuraion\FolderConfig.cs" />
     <Compile Include="Configuraion\OrderConfig.cs" />
     <Compile Include="Configuraion\OrderDetailConfig.cs" />

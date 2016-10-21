@@ -11,10 +11,6 @@ namespace ViewModel.Admin.Folder
 {
     public class AddFolderViewModel
     {
-        [Required(ErrorMessage = "نام فولدر را وارد کنید")]
-        [MaxLength(50,ErrorMessage = "تعداد حروف نام فولدر غیر مجاز است")]
-        [Remote("CheckFolderNameExistForAdd", "Folder", "Admin", ErrorMessage = "این نام قبلا ثبت شده است", HttpMethod = "POST")]
-        [DisplayName("نام فولدر")]
         public string Name { get; set; }
     }
 }

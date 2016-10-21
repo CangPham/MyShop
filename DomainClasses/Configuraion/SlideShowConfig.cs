@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DomainClasses.Configuraion
 {
-    public class SlideShowConfig : EntityTypeConfiguration<SlideShow>
+    public class SlideShowConfig : EntityBaseConfiguration<SlideShow>
     {
         public SlideShowConfig()
         {

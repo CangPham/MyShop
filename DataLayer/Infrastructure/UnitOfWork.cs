@@ -14,11 +14,13 @@ namespace DataLayer.Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory dbFactory;
+        private Dictionary<Type, object> repositories;
         private ShopDbContext dbContext;
 
         public UnitOfWork(IDbFactory dbFactory)
         {
             this.dbFactory = dbFactory;
+            repositories = new Dictionary<Type, object>();
         }
 
         public ShopDbContext DbContext
@@ -30,6 +32,25 @@ namespace DataLayer.Infrastructure
         {
             DbContext.Commit();
         }
+
+        //public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
+        //{
+
+        //    // If our repositories have a matching repository, return it
+        //    if (repositories.Keys.Contains(typeof(TEntity)))
+        //        return repositories[typeof(TEntity)] as IRepository<TEntity>;
+
+        //    // Create a new repository for our entity
+        //    var repository = new Repository<TEntity>(context);
+
+        //    // Add to our list of repositories
+        //    repositories.Add(typeof(TEntity), repository);
+
+        //    // Return our repository
+        //    return repository;
+        //}        
+       
+
         #region UnitOfWork
         //public void MarkAsDeleted<TEntity>(TEntity entity) where TEntity : class
         //{

@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class ProductConfig : EntityTypeConfiguration<Product>
+    public class ProductConfig : EntityBaseConfiguration<Product>
     {
         public ProductConfig()
         {

@@ -9,7 +9,7 @@ namespace ViewModel.Admin.Product
 {
     public class AddProductPicturesViewModel
     {
-        public long ProductId { get; set; }
+        public int ProductId { get; set; }
         public string Image1 { get; set; }
         public string Image2 { get; set; }
         public string Image3 { get; set; }

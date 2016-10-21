@@ -8,7 +8,7 @@ namespace ViewModel.Admin.Product
 {
    public class ProductCompareViewModel
     {
-       public long ProductId { get; set; }
+       public int ProductId { get; set; }
        public string ProductName { get; set; }
        public int TotalRaters { get; set; }
        public double?  AvrageRate { get; set; }

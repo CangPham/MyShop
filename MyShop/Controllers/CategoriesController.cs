@@ -14,6 +14,7 @@ using System.Web.OData.Query;
 using System.Web.OData.Routing;
 using DataLayer.Context;
 using DomainClasses.Entities;
+using DataLayer.Repositories;
 
 namespace MyShop.Controllers
 {
@@ -29,26 +30,34 @@ namespace MyShop.Controllers
     builder.EntitySet<Product>("Products"); 
     config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class CategoriesController : ODataController
-    {
-        private ShopDbContext db = new ShopDbContext();
+    //[Authorize(Roles = "Admin")]
+    //[RoutePrefix("api/categories")]
+    public class CategoriesController : ApiBaseController
+    {        
+        private readonly IEntityBaseRepository<Category> _categoryRepository;
+        public CategoriesController(IEntityBaseRepository<Category> categoryRepository,
+            IUnitOfWork _unitOfWork) : base(_unitOfWork)
+        {
+            _categoryRepository = categoryRepository;
+        }
 
         // GET: odata/Categories
         [EnableQuery]
         public IQueryable<Category> GetCategories()
         {
-            return db.Categories;
+            return _categoryRepository.GetAll();
         }
 
         // GET: odata/Categories(5)
         [EnableQuery]
-        public SingleResult<Category> GetCategory([FromODataUri] long key)
+        public SingleResult<Category> GetCategory([FromODataUri] int key)
         {
-            return SingleResult.Create(db.Categories.Where(category => category.Id == key));
+            var category = _categoryRepository.FindBy(p => p.Id == key);
+            return SingleResult.Create(category);
         }
 
         // PUT: odata/Categories(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] long key, Delta<Category> patch)
+        public async Task<IHttpActionResult> Put([FromODataUri] int key, Delta<Category> patch)
         {
             Validate(patch.GetEntity());
 
@@ -57,7 +66,7 @@ namespace MyShop.Controllers
                 return BadRequest(ModelState);
             }
 
-            Category category = await db.Categories.FindAsync(key);
+            Category category = await _categoryRepository.FindAsync(p => p.Id == key);
             if (category == null)
             {
                 return NotFound();
@@ -67,7 +76,7 @@ namespace MyShop.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                await _categoryRepository.UpdateAsync(category, key);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -92,15 +101,14 @@ namespace MyShop.Controllers
                 return BadRequest(ModelState);
             }
 
-            db.Categories.Add(category);
-            await db.SaveChangesAsync();
+            await _categoryRepository.AddAsync(category);
 
             return Created(category);
         }
 
         // PATCH: odata/Categories(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] long key, Delta<Category> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] int key, Delta<Category> patch)
         {
             Validate(patch.GetEntity());
 
@@ -109,7 +117,7 @@ namespace MyShop.Controllers
                 return BadRequest(ModelState);
             }
 
-            Category category = await db.Categories.FindAsync(key);
+            Category category = await _categoryRepository.FindAsync(p => p.Id == key);
             if (category == null)
             {
                 return NotFound();
@@ -119,7 +127,7 @@ namespace MyShop.Controllers
 
             try
             {
-                await db.SaveChangesAsync();
+                await _categoryRepository.UpdateAsync(category, key);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -137,60 +145,49 @@ namespace MyShop.Controllers
         }
 
         // DELETE: odata/Categories(5)
-        public async Task<IHttpActionResult> Delete([FromODataUri] long key)
+        public async Task<IHttpActionResult> Delete([FromODataUri] int key)
         {
-            Category category = await db.Categories.FindAsync(key);
+            Category category = await _categoryRepository.FindAsync(p => p.Id == key);
             if (category == null)
             {
                 return NotFound();
             }
-
-            db.Categories.Remove(category);
-            await db.SaveChangesAsync();
+            await _categoryRepository.DeleteAsync(category);
 
             return StatusCode(HttpStatusCode.NoContent);
         }
 
         // GET: odata/Categories(5)/Attributes
-        [EnableQuery]
-        public IQueryable<DomainClasses.Entities.Attribute> GetAttributes([FromODataUri] long key)
-        {
-            return db.Categories.Where(m => m.Id == key).SelectMany(m => m.Attributes);
-        }
+        //[EnableQuery]
+        //public IQueryable<DomainClasses.Entities.Attribute> GetAttributes([FromODataUri] long key)
+        //{
+        //    return db.Categories.Where(m => m.Id == key).SelectMany(m => m.Attributes);
+        //}
 
-        // GET: odata/Categories(5)/Children
-        [EnableQuery]
-        public IQueryable<Category> GetChildren([FromODataUri] long key)
-        {
-            return db.Categories.Where(m => m.Id == key).SelectMany(m => m.Children);
-        }
+        //// GET: odata/Categories(5)/Children
+        //[EnableQuery]
+        //public IQueryable<Category> GetChildren([FromODataUri] long key)
+        //{
+        //    return db.Categories.Where(m => m.Id == key).SelectMany(m => m.Children);
+        //}
 
-        // GET: odata/Categories(5)/Parent
-        [EnableQuery]
-        public SingleResult<Category> GetParent([FromODataUri] long key)
-        {
-            return SingleResult.Create(db.Categories.Where(m => m.Id == key).Select(m => m.Parent));
-        }
+        //// GET: odata/Categories(5)/Parent
+        //[EnableQuery]
+        //public SingleResult<Category> GetParent([FromODataUri] long key)
+        //{
+        //    return SingleResult.Create(db.Categories.Where(m => m.Id == key).Select(m => m.Parent));
+        //}
 
-        // GET: odata/Categories(5)/Products
-        [EnableQuery]
-        public IQueryable<Product> GetProducts([FromODataUri] long key)
-        {
-            return db.Categories.Where(m => m.Id == key).SelectMany(m => m.Products);
-        }
+        //// GET: odata/Categories(5)/Products
+        //[EnableQuery]
+        //public IQueryable<Product> GetProducts([FromODataUri] long key)
+        //{
+        //    return db.Categories.Where(m => m.Id == key).SelectMany(m => m.Products);
+        //}        
 
-        protected override void Dispose(bool disposing)
+        private bool CategoryExists(int key)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
-
-        private bool CategoryExists(long key)
-        {
-            return db.Categories.Count(e => e.Id == key) > 0;
+            return _categoryRepository.Count(key) > 0;
         }
     }
 }

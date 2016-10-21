@@ -43,7 +43,7 @@ namespace MyShop.Controllers
         public IQueryable<Product> GetProducts()
         {
             return db.Products;
-        }
+         }
 
         // GET: odata/Products(5)
         [EnableQuery]

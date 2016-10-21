@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class CommentConfig : EntityTypeConfiguration<Comment>
+    public class CommentConfig : EntityBaseConfiguration<Comment>
     {
         public CommentConfig()
         {

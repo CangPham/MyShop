@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-   public class SiteOptionConfig:EntityTypeConfiguration<SiteOption>
+   public class SiteOptionConfig: EntityBaseConfiguration<SiteOption>
    {
        public SiteOptionConfig()
        {

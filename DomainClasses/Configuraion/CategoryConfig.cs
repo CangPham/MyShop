@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class CategoryConfig : EntityTypeConfiguration<Category>
+    public class CategoryConfig : EntityBaseConfiguration<Category>
     {
         public CategoryConfig()
         {

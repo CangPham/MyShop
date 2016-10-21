@@ -12,10 +12,8 @@ namespace ViewModel.Admin
 {
     public class ShowCatetoryViewModel
     {
-        public virtual long Id { get; set; }
-        [DisplayName("نام گروه")]
+        public int Id { get; set; }
         public virtual string Name { get; set; }
-        [DisplayName("درصد تخفیف")]
         public virtual int DiscountPercent { get; set; }
     }
 }

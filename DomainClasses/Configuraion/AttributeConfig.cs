@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DomainClasses.Configuraion
 {
-    public class AttributeConfig : EntityTypeConfiguration<Attribute>
+    public class AttributeConfig : EntityBaseConfiguration<Attribute>
     {
         public AttributeConfig()
         {

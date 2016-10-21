@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class ContactConfig : EntityTypeConfiguration<Contact>
+    public class ContactConfig : EntityBaseConfiguration<Contact>
     {
      
         public ContactConfig()

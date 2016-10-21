@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-   public class ImageConfig:EntityTypeConfiguration<ProductImage>
+   public class ImageConfig: EntityBaseConfiguration<ProductImage>
    {
        public ImageConfig()
        {

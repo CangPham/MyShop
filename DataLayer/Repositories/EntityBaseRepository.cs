@@ -78,5 +78,46 @@ namespace DataLayer.Repositories
             DbEntityEntry dbEntityEntry = DbContext.Entry<T>(entity);
             dbEntityEntry.State = EntityState.Deleted;
         }
+        public async Task<T> FindAsync(Expression<Func<T, bool>> match)
+        {
+            return await DbContext.Set<T>().SingleOrDefaultAsync(match);
+        }
+        public async Task<T> AddAsync(T entity)
+        {
+            DbContext.Set<T>().Add(entity);
+            await DbContext.SaveChangesAsync();
+            return entity;
+        }
+        public async Task<T> UpdateAsync(T updated, int key)
+        {
+            if (updated == null)
+                return null;
+
+            T existing = await DbContext.Set<T>().FindAsync(key);
+            if (existing != null)
+            {
+                DbContext.Entry(existing).CurrentValues.SetValues(updated);
+                await DbContext.SaveChangesAsync();
+            }
+            return existing;
+        }
+        public async Task<int> DeleteAsync(T entity)
+        {
+            DbContext.Set<T>().Remove(entity);
+            return await DbContext.SaveChangesAsync();
+        }
+        public int Count()
+        {
+            return DbContext.Set<T>().Count();
+        }
+        public int Count(int Id)
+        {
+            return DbContext.Set<T>().Count(x => x.Id == Id);
+        }
+
+        public async Task<int> CountAsync()
+        {
+            return await DbContext.Set<T>().CountAsync();
+        }
     }
 }

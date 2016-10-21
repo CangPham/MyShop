@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class PageConfig:EntityTypeConfiguration<Page>
+    public class PageConfig: EntityBaseConfiguration<Page>
     {
         public PageConfig()
         {

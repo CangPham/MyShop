@@ -18,5 +18,12 @@ namespace DataLayer.Repositories
         void Add(T entity);
         void Delete(T entity);
         void Edit(T entity);
+        Task<T> FindAsync(Expression<Func<T, bool>> match);
+        Task<T> AddAsync(T entity);
+        Task<T> UpdateAsync(T updated, int key);
+        Task<int> DeleteAsync(T entity);
+        int Count();
+        int Count(int Id);
+        Task<int> CountAsync();
     }
 }

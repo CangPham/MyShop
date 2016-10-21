@@ -17,7 +17,7 @@ namespace ViewModel.Admin.Product
         public string Term { get; set; }
         public ProductOrderBy ProductOrderBy { get; set; }
         public ProductType ProductType { get; set; }
-        public long CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public int PageNumber { get; set; }
         public int TotalProducts { get; set; }
     }

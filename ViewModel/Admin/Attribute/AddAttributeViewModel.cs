@@ -12,15 +12,8 @@ namespace ViewModel.Admin
 {
     public class AddAttributeViewModel
     {
-        [DisplayName("Name")]
-        [Required(ErrorMessage = "Name is required")]
-        [MaxLength(40, ErrorMessage = "Maxlength is 40")]
-        [Remote("AddCheckExistAttributeForCategory", "Category", "Admin", ErrorMessage = "", HttpMethod = "POST", AdditionalFields = "CategoryId")]
         public string Name { get; set; }
-        [DisplayName("Category Id")]
-        [Required(ErrorMessage = "Category Id is required")]
-        public long CategoryId { get; set; }
-        [DisplayName("Cascade Add For Children")]
+        public int CategoryId { get; set; }        
         public bool CascadeAddForChildren { get; set; }
     }
 }

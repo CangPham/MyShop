@@ -16,7 +16,7 @@ namespace ViewModel.Admin.Product
         public int Count { get; set; }
         public int Total { get; set; }
         public string Term { get; set; }
-        public long CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public PSFilter Filter { get; set; }
         public long MinPrice { get; set; }
         public long MaxPrice { get; set; }

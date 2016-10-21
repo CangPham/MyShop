@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class FolderConfig : EntityTypeConfiguration<Folder>
+    public class FolderConfig : EntityBaseConfiguration<Folder>
     {
         public FolderConfig()
         {

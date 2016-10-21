@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DomainClasses.Configuraion
 {
-   public class ShoppingCartConfig: EntityBaseConfiguration<ShoppingCart>
-   {
-       public ShoppingCartConfig()
-       {
-           Property(a => a.CartNumber).IsRequired().HasMaxLength(50);
-       }
+    public class EntityBaseConfiguration<T> : EntityTypeConfiguration<T> where T : class, IEntityBase
+    {
+        public EntityBaseConfiguration()
+        {
+            HasKey(e => e.Id);
+        }
     }
 }

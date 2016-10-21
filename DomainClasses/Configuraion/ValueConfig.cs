@@ -8,7 +8,7 @@ using DomainClasses.Entities;
 
 namespace DomainClasses.Configuraion
 {
-    public class ValueConfig:EntityTypeConfiguration<Value>
+    public class ValueConfig: EntityBaseConfiguration<Value>
     {
         public ValueConfig()
         {

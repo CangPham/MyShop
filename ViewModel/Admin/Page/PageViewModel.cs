@@ -12,15 +12,10 @@ namespace ViewModel.Admin.Page
 {
     public class PageViewModel
     {
-        public long Id { get; set; }
-        [DisplayName("محتوای صفحه")]
-        [AllowHtml]
+        public int Id { get; set; }
         public string Content { get; set; }
-        [DisplayName("مکان نمایش")]
         public string ShowPlace { get; set; }
-        [DisplayName("عنوان صفحه")]
         public string Title { get; set; }
-        [DisplayName("تصویر لینک")]
         public string LinkImage { get; set; }
     }
 }

@@ -10,7 +10,6 @@ namespace DomainClasses.Entities
 {
     public class ShoppingCart : IEntityBase
     {
-        [Key]
         public int Id { get; set; }
         public virtual decimal Quantity { get; set; }
         public virtual Product Product { get; set; }
