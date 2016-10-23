@@ -1,10 +1,6 @@
 ﻿var app = angular.module('app', [
     'ngRoute',
-    'ngCookies',
-    'home',
-    'signIn',
-    'register',
-    'todoManager'
+    'ngCookies'
 ]);
 
 
@@ -40,15 +36,15 @@ app.config(['$provide', '$routeProvider', '$httpProvider', function ($provide, $
     // Routes
     //================================================
     $routeProvider.when('/home', {
-        templateUrl: 'App/Home',
+        templateUrl: 'Assets/app/home/index.html',
         controller: 'homeCtrl'
     });
     $routeProvider.when('/register', {
-        templateUrl: 'App/Register',
+        templateUrl: 'Assets/app/account/register.html',
         controller: 'registerCtrl'
     });
     $routeProvider.when('/signin/:message?', {
-        templateUrl: 'App/SignIn',
+        templateUrl: 'Assets/app/account/login.html',
         controller: 'signInCtrl'
     });
         

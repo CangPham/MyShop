@@ -19,6 +19,8 @@ using MyShop.Results;
 using MyShop.Models.Utility;
 using System.Net;
 using DomainClasses.Entities;
+using ViewModel;
+using ViewModel.Admin;
 
 namespace MyShop.Controllers
 {
@@ -324,7 +326,7 @@ namespace MyShop.Controllers
         // POST api/Account/Register
         [AllowAnonymous]
         [Route("Register")]
-        public async Task<HttpResponseMessage> Register(RegisterBindingModel model)
+        public async Task<HttpResponseMessage> Register(AddCategoryViewModel model)
         {
             List<string> errors = new List<string>();
             errors = ModelErrorChecker.Check(ModelState);

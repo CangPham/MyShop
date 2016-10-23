@@ -29,12 +29,10 @@ namespace DataLayer.Migrations
             //    );
             //
             context.Users.AddOrUpdate(u => u.UserName, new User
-            {
-                RegisterDate = DateTime.Now,
+            {                
                 IsBaned = false,
-                RegisterType = UserRegisterType.Active,
                 PhoneNumber = "0973781781",
-                Password = "123456",
+                PasswordHash = "123456",
                 UserName = "admin"
             });
             context.SaveChanges();

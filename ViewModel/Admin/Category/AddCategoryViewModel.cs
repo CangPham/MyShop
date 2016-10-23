@@ -13,6 +13,8 @@ namespace ViewModel.Admin
 {
     public class AddCategoryViewModel
     {
+        public string Email { get; set;}
+        public string Password { get; set; }
         public int Level { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }

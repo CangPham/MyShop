@@ -1,0 +1,36 @@
+﻿<div class="row">
+    <form class="form-signin" role="form" novalidate angular-validator name="userRegistrationForm" ng-submit="register()">
+        <h3 class="form-signin-heading">Register <label class="label label-danger">Admin</label></h3>
+        <div class="form-group">
+            <label for="inputUsername" class="">Username</label>
+            <input type="text" name="inputUsername" class="form-control" ng-model="username" 
+                   placeholder="Username" validate-on="blur" required required-message="'Username is required'">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Password</label>
+            <input type="password" name="inputPassword" class="form-control" ng-model="password1" placeholder="Password"
+                    validate-on="blur" required required-message="'Password is required'">
+        </div>
+        <div class="form-group">
+            <label for="inputPassword">Confirm Password</label>
+            <input type="password" name="inputPassword1" class="form-control" ng-model="password2" placeholder="Confirm Password"
+                   validate-on="blur" required required-message="'Password is required'">
+        </div>
+        <!--<div class="form-group">
+            <label for="inputEmail">Email</label>
+            <input type="email" name="inputEmail" class="form-control" ng-model="user.email" placeholder="Email address"
+                   validate-on="blur" required required-message="'Email is required'">
+        </div>-->
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+    </form>
+</div>
+<div class="row">
+    <div class="col-md-3">
+        <ul class="list-group margin-top-5" ng-show="showErrorMessage">
+            <li class="list-group-item list-group-item-danger" ng-repeat="message in errorMessages">
+                {{message}}
+            </li>
+        </ul>
+        <div class="row alert alert-success margin-top-5" ng-show="showSuccessMessage">{{successMessage}}</div>
+    </div>
+</div>

@@ -25,17 +25,12 @@ namespace DomainClasses.Entities
         public virtual ICollection<Contact> Contacts { get; set; }
         public virtual string LastName { get; set; }
         public virtual string AvatarPath { get; set; }
-        public virtual DateTime? BirthDay { get; set; }
-        public virtual string Password { get; set; }
         [InverseProperty("UsersFavorite")]
         public virtual ICollection<Product> ProductsFavorite { get; set; }
         public virtual UserRegisterType RegisterType { get; set; }
         public virtual string Address { get; set; }
         public virtual string IP { get; set; }
         public virtual bool IsBaned { get; set; }
-        public virtual DateTime RegisterDate { get; set; }
-        public virtual DateTime? BanedDate { get; set; }
-        public virtual DateTime? LastLoginDate { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
         public virtual ICollection<Product> LikedProducts { get; set; }
         public virtual ICollection<Comment> LikedComments { get; set; }

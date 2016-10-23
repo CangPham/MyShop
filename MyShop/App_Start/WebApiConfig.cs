@@ -29,11 +29,11 @@ namespace MyShop
             //I chaned the routeTemplate so that methods/services would be identified by their action, and not by their parameters.
             //I was getting conflicts if I had more than one GET services, that had identical parameter options, but totally different return data.
             //Adding the action to the routeTemplte correct this issue.
-            //config.Routes.MapHttpRoute(
-            //    name: "DefaultApi",
-            //    routeTemplate: "api/{controller}/{action}/{id}", //routeTemplate: "api/{controller}/{id}",
-            //    defaults: new { id = RouteParameter.Optional }
-            //);
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{action}/{id}", //routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional }
+            );
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Product>("Products");
             builder.EntitySet<Category>("Categories");
