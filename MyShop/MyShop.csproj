@@ -308,7 +308,7 @@
       <Name>DomainClasses</Name>
     </ProjectReference>
     <ProjectReference Include="..\ViewModel\ViewModel.csproj">
-      <Project>{3152329D-CACE-4A3C-855A-79DE11AD5A4F}</Project>
+      <Project>{3152329d-cace-4a3c-855a-79de11ad5a4f}</Project>
       <Name>ViewModel</Name>
     </ProjectReference>
   </ItemGroup>
