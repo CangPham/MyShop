@@ -1,13 +1,11 @@
 ﻿var app = angular.module('app', [
-    'ngRoute',
-    'ngCookies'
+    'ui.router',
+    'ngCookies',
+    'ngResource'
 ]);
 
+app.config(['$provide', '$stateProvider', '$urlRouterProvider', '$httpProvider', function ($provide, $stateProvider, $urlRouterProvider, $httpProvider) {
 
-
-
-app.config(['$provide', '$routeProvider', '$httpProvider', function ($provide, $routeProvider, $httpProvider) {
-    
     //================================================
     // Ignore Template Request errors if a page that was requested was not found or unauthorized.  The GET operation could still show up in the browser debugger, but it shouldn't show a $compile:tpload error.
     //================================================
@@ -22,7 +20,7 @@ app.config(['$provide', '$routeProvider', '$httpProvider', function ($provide, $
     // Add an interceptor for AJAX errors
     //================================================
     $httpProvider.interceptors.push(['$q', '$location', function ($q, $location) {
-        return {            
+        return {
             'responseError': function (response) {
                 if (response.status === 401)
                     $location.url('/signin');
@@ -31,26 +29,63 @@ app.config(['$provide', '$routeProvider', '$httpProvider', function ($provide, $
         };
     }]);
 
-        
     //================================================
     // Routes
     //================================================
-    $routeProvider.when('/home', {
-        templateUrl: 'Assets/app/home/index.html',
-        controller: 'homeCtrl'
-    });
-    $routeProvider.when('/register', {
-        templateUrl: 'Assets/app/account/register.html',
-        controller: 'registerCtrl'
-    });
-    $routeProvider.when('/signin/:message?', {
-        templateUrl: 'Assets/app/account/login.html',
-        controller: 'signInCtrl'
-    });
-        
-    $routeProvider.otherwise({
-        redirectTo: '/home'
-    });    
+
+    $urlRouterProvider.otherwise('/dashboard/home');
+
+    $stateProvider
+        //.state('index', {
+        //    url: '', // Catch 'Admin Centre home page' Requests without '#' character.
+        //    controller: ['$rootScope', '$scope', '$state', function ($rootScope, $scope, $state) {
+        //        console.log($rootScope.loggedIn)
+        //        // Check if current user authenicated.
+        //        $scope.isAuthenicated = $rootScope.loggedIn;
+        //        if ($scope.isAuthenicated) {
+        //            // for authenicated user, redirect to Home page.
+        //            $state.go('home');
+        //        } else {
+        //            // for unauthenicated user, redirect to Login page.
+        //            $state.go('signin');
+        //        }
+        //    }]
+        //})
+          .state('base', {
+              abstract: true,
+              url: '',
+              templateUrl: 'Assets/app/views/base.html'
+          })
+            .state('signin', {
+                url: '/signin',
+                parent: 'base',
+                templateUrl: 'Assets/app/account/login.html',
+                controller: 'signInCtrl'
+            })
+            .state('register', {
+                url: '/register',
+                parent: 'base',
+                templateUrl: 'Assets/app/account/register.html',
+                controller: 'signInCtrl'
+            })
+           .state('dashboard', {
+               url: '/dashboard',
+               parent: 'base',
+               templateUrl: 'Assets/app/views/dashboard.html'
+           })
+            .state('home', {
+                url: '/home',
+                parent: 'dashboard',
+                templateUrl: 'Assets/app/home/index.html',
+                controller: 'homeCtrl'
+            })
+            .state('category', {
+                url: '/category',
+                parent: 'dashboard',
+                templateUrl: 'Assets/app/category/index.html',
+                controller: 'categoriesCtrl'
+            });
+
 }]);
 
 app.run(['$http', '$cookies', '$cookieStore', function ($http, $cookies, $cookieStore) {
@@ -60,10 +95,6 @@ app.run(['$http', '$cookies', '$cookieStore', function ($http, $cookies, $cookie
 }]);
 
 
-
-
-
-
 //GLOBAL FUNCTIONS - pretty much a root/global controller.
 //Get username on each page
 //Get updated token on page change.
@@ -71,7 +102,7 @@ app.run(['$http', '$cookies', '$cookieStore', function ($http, $cookies, $cookie
 app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope, $http, $cookies, $cookieStore) {
 
     $rootScope.logout = function () {
-        
+
         $http.post('/api/Account/Logout')
             .success(function (data, status, headers, config) {
                 $http.defaults.headers.common.Authorization = null;
@@ -86,6 +117,7 @@ app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope
     }
 
     $rootScope.$on('$locationChangeSuccess', function (event) {
+        console.log($http.defaults.headers.common.RefreshToken)
         if ($http.defaults.headers.common.RefreshToken != null) {
             var params = "grant_type=refresh_token&refresh_token=" + $http.defaults.headers.common.RefreshToken;
             $http({
@@ -117,6 +149,7 @@ app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope
                 $rootScope.loggedIn = false;
             });
         }
+        console.log($rootScope.loggedIn)
     });
 }]);
 

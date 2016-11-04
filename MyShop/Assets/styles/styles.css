@@ -1,8 +1,7 @@
-﻿body {
+﻿/*body {
 }
 
 .site-header {
-    /*color: #F2EFDC;*/
     padding: 10px;
 }
 
@@ -16,7 +15,6 @@
 
 .site-status {
     margin-top: 10px;
-    /*color: white;*/
 }
 
 .site-footer {
@@ -44,14 +42,12 @@
 }
 
 .home-consumer {
-    /*background-color: #888888;*/
 }
 
 .home-contractor {
-    /*background-color:#888666;*/
-}
+}*/
 
-.dashboard-btn {
+/*.dashboard-btn {
     margin-top: 15px;
 }
 
@@ -84,4 +80,4 @@
 }
 .session-alert-btn-wrapper {
     padding: 10px;
-}
+}*/
