@@ -246,6 +246,7 @@
     <Content Include="Assets\app\app.js" />
     <Content Include="Assets\app\category\category.factory.js" />
     <Content Include="Assets\app\category\categoryCtrl.js" />
+    <Content Include="Assets\app\category\index.html" />
     <Content Include="Assets\app\common\request.service.js" />
     <Content Include="Assets\app\home\homeCtrl.js" />
     <Content Include="Assets\app\home\index.html" />

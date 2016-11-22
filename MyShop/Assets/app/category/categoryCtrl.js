@@ -39,9 +39,9 @@
         };
 
         vm.getCategories = function () {
-            var ret = CategoryService.getAll();
+            var ret = (new CategoryService()).$getAll();
             ret.then(function (result) {
-                vm.categories = result.Categories;
+                vm.categories = result.value;
             }, showError);
         };
 
