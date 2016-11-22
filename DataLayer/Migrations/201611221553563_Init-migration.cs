@@ -3,7 +3,7 @@ namespace DataLayer.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initial_migration : DbMigration
+    public partial class Initmigration : DbMigration
     {
         public override void Up()
         {
@@ -104,15 +104,10 @@ namespace DataLayer.Migrations
                         FirstName = c.String(),
                         LastName = c.String(),
                         AvatarPath = c.String(),
-                        BirthDay = c.DateTime(),
-                        Password = c.String(),
                         RegisterType = c.Int(nullable: false),
                         Address = c.String(),
                         IP = c.String(),
                         IsBaned = c.Boolean(nullable: false),
-                        RegisterDate = c.DateTime(nullable: false),
-                        BanedDate = c.DateTime(),
-                        LastLoginDate = c.DateTime(),
                         RowVersion = c.Binary(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),

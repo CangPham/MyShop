@@ -15,7 +15,6 @@ namespace DomainClasses.Entities
         public virtual ICollection<Category> Children  { get; set; }
         public virtual int DisplayOrder { get; set; }
         public virtual ICollection<Product> Products  { get; set; }
-        public virtual ICollection<Attribute> Attributes { get; set; }
         public virtual string Description { get; set; }
         public virtual string KeyWords { get; set; }
         public virtual int DiscountPercent { get; set; }

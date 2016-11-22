@@ -59,6 +59,10 @@
       <HintPath>..\packages\Microsoft.Data.OData.5.6.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="MockData, Version=0.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MockData.0.0.6\lib\net40\MockData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -98,17 +102,9 @@
     <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\UnitOfWork.cs" />
-    <Compile Include="Migrations\201610210345441_initial_migration.cs" />
-    <Compile Include="Migrations\201610210345441_initial_migration.Designer.cs">
-      <DependentUpon>201610210345441_initial_migration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610231616360_initial_migration1.cs" />
-    <Compile Include="Migrations\201610231616360_initial_migration1.Designer.cs">
-      <DependentUpon>201610231616360_initial_migration1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201610231628578_remove date time user.cs" />
-    <Compile Include="Migrations\201610231628578_remove date time user.Designer.cs">
-      <DependentUpon>201610231628578_remove date time user.cs</DependentUpon>
+    <Compile Include="Migrations\201611221553563_Init-migration.cs" />
+    <Compile Include="Migrations\201611221553563_Init-migration.Designer.cs">
+      <DependentUpon>201611221553563_Init-migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,14 +122,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201610210345441_initial_migration.resx">
-      <DependentUpon>201610210345441_initial_migration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610231616360_initial_migration1.resx">
-      <DependentUpon>201610231616360_initial_migration1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201610231628578_remove date time user.resx">
-      <DependentUpon>201610231628578_remove date time user.cs</DependentUpon>
+    <Content Include="it\MockData.resources.dll" />
+    <Content Include="uk\MockData.resources.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611221553563_Init-migration.resx">
+      <DependentUpon>201611221553563_Init-migration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
