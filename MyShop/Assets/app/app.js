@@ -1,7 +1,8 @@
 ﻿var app = angular.module('app', [
     'ui.router',
     'ngCookies',
-    'ngResource'
+    'ngResource',
+    'datatables'
 ]);
 
 app.config(['$provide', '$stateProvider', '$urlRouterProvider', '$httpProvider', function ($provide, $stateProvider, $urlRouterProvider, $httpProvider) {
@@ -66,7 +67,7 @@ app.config(['$provide', '$stateProvider', '$urlRouterProvider', '$httpProvider',
                 url: '/register',
                 parent: 'base',
                 templateUrl: 'Assets/app/account/register.html',
-                controller: 'signInCtrl'
+                controller: 'registerCtrl'
             })
            .state('dashboard', {
                url: '/dashboard',
@@ -83,7 +84,8 @@ app.config(['$provide', '$stateProvider', '$urlRouterProvider', '$httpProvider',
                 url: '/category',
                 parent: 'dashboard',
                 templateUrl: 'Assets/app/category/index.html',
-                controller: 'categoriesCtrl'
+                controller: 'categoriesCtrl',
+                controllerAs: 'vm'
             });
 
 }]);

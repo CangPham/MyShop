@@ -289,6 +289,8 @@
     <Content Include="Assets\styles\css\codemirror\theme\vibrant-ink.css" />
     <Content Include="Assets\styles\css\codemirror\theme\xq-dark.css" />
     <Content Include="Assets\styles\css\codemirror\theme\xq-light.css" />
+    <Content Include="Assets\styles\css\datatable\angular-datatables.css" />
+    <Content Include="Assets\styles\css\datatable\angular-datatables.min.css" />
     <Content Include="Assets\styles\css\dropzone\dropzone.css" />
     <Content Include="Assets\styles\css\fontawesome\font-awesome.min.css" />
     <Content Include="Assets\styles\css\fonts\fontawesome-webfont.svg" />
@@ -308,6 +310,7 @@
     <Content Include="Assets\styles\img\logo.png" />
     <Content Include="Assets\styles\styles.css" />
     <Content Include="Assets\vendors\angular-cookies.min.js" />
+    <Content Include="Assets\vendors\angular-datatables.min.js" />
     <Content Include="Assets\vendors\angular-resource.min.js" />
     <Content Include="Assets\vendors\angular-route.min.js" />
     <Content Include="Assets\vendors\angular-ui-router.min.js" />
@@ -316,6 +319,7 @@
     <Content Include="Assets\vendors\bootstrap.min.js" />
     <Content Include="Assets\vendors\jquery-3.1.1.js" />
     <Content Include="Assets\vendors\jquery-3.1.1.min.js" />
+    <Content Include="Assets\vendors\jquery.dataTables.min.js" />
     <Content Include="Assets\vendors\loading-bar.js" />
     <Content Include="Assets\vendors\loading-bar.min.js" />
     <Content Include="Assets\vendors\lodash.core.js" />

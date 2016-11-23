@@ -9,7 +9,7 @@ namespace MyShop
         public static void RegisterBundles(BundleCollection bundles)
         {
             //Moved bootstrap css to own style tag in the _layout page.  This is to remove it from the optimizations which was breaking the fonts and icons.
-            //bundles.Add(new StyleBundle("~/styles").IncludeDirectory("~/Assets", "*.css", true));
+            //bundles.Add(new StyleBundle("~/styles").IncludeDirectory("~/Assets/styles", "*.css", true));
 
 
             bundles.Add(new ScriptBundle("~/vendors").Include(
@@ -20,7 +20,9 @@ namespace MyShop
                         "~/Assets/Vendors/angular-ui-router.min.js",
                         "~/Assets/Vendors/angular-cookies.min.js",
                         "~/Assets/Vendors/angular-resource.min.js",
-                        "~/Assets/Vendors/lodash.core.min.js",                        
+                        "~/Assets/Vendors/lodash.core.min.js",
+                        "~/Assets/Vendors/jquery.dataTables.min.js",
+                        "~/Assets/Vendors/angular-datatables.min.js",
                         "~/Assets/Vendors/loading-bar.js"));
 
             bundles.Add(new ScriptBundle("~/app").IncludeDirectory("~/Assets/app", "*.js", true));
@@ -28,14 +30,13 @@ namespace MyShop
             bundles.Add(new ScriptBundle("~/misc").IncludeDirectory("~/Assets/misc", "*.js", true));
 
             //bundles.Add(new StyleBundle("~/Content/css").Include(
-            //    "~/Content/css/site.css",
-            //    "~/Content/css/bootstrap.css",
-            //    "~/Content/css/bootstrap-theme.css",
-            //    "~/Content/css/font-awesome.css",
-            //    "~/Content/css/morris.css",
-            //    "~/Content/css/toastr.css",
-            //    "~/Content/css/jquery.fancybox.css",
-            //    "~/Content/css/loading-bar.css"));
+            //    "~/Assets/styles/css/bootstrap/bootstrap.min.css",
+            //    "~/Assets/styles/css/bootstrap-theme.css",
+            //    "~/Assets/styles/css/font-awesome.css",
+            //    "~/Assets/styles/css/morris.css",
+            //    "~/Assets/styles/css/toastr.css",
+            //    "~/Assets/styles/css/jquery.fancybox.css",
+            //    "~/Assets/styles/css/loading-bar.css"));
 
             // Set EnableOptimizations to false for debugging. For more information,
             // visit http://go.microsoft.com/fwlink/?LinkId=301862
