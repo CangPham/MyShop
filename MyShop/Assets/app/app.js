@@ -101,7 +101,7 @@ app.run(['$http', '$cookies', '$cookieStore', function ($http, $cookies, $cookie
 //Get username on each page
 //Get updated token on page change.
 //Logout available on each page.
-app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope, $http, $cookies, $cookieStore) {
+app.run(['$rootScope', '$http', '$cookies', '$cookieStore', '$state', function ($rootScope, $http, $cookies, $cookieStore, $state) {
 
     $rootScope.logout = function () {
 
@@ -118,8 +118,7 @@ app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope
 
     }
 
-    $rootScope.$on('$locationChangeSuccess', function (event) {
-        console.log($http.defaults.headers.common.RefreshToken)
+    $rootScope.$on('$stateChangeSuccess', function (event) {
         if ($http.defaults.headers.common.RefreshToken != null) {
             var params = "grant_type=refresh_token&refresh_token=" + $http.defaults.headers.common.RefreshToken;
             $http({
@@ -151,7 +150,12 @@ app.run(['$rootScope', '$http', '$cookies', '$cookieStore', function ($rootScope
                 $rootScope.loggedIn = false;
             });
         }
-        console.log($rootScope.loggedIn)
+    });
+
+    $rootScope.$on('$stateChangeStart', function (event) {        
+        if ($http.defaults.headers.common.RefreshToken == null) {
+            window.location = '#/signin';
+        }
     });
 }]);
 
